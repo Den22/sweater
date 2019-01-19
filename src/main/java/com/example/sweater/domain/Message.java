@@ -4,10 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -22,8 +19,17 @@ public class Message {
     private String text;
     private String tag;
 
-    public Message(String text, String tag) {
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User author;
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "<none>";
+    }
+
+    public Message(String text, String tag, User user) {
         this.text = text;
         this.tag = tag;
+        this.author = user;
     }
 }

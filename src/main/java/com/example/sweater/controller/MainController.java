@@ -49,4 +49,12 @@ public class MainController {
 
         return main(null, model);
     }
+
+    @GetMapping("message")
+    public String delete(@RequestParam Message message) {
+
+        messageRepo.delete(message);
+
+        return "redirect:/main";
+    }
 }

@@ -3,6 +3,7 @@
 
 <@c.page>
 <div> <@l.logout /></div>
+    <span><a href="/user">User list</a></span>
 <div>
     <form method="post" action="add">
         <input type="text" name="text" placeholder="Введите сообщение">
@@ -22,6 +23,7 @@
     <span>${message.text}</span>
     <i>${message.tag}</i>
     <strong>${message.authorName}</strong>
+    <a href="/message?message=${message.id}">delete</a>
 </div>
 <#else>
 No message
